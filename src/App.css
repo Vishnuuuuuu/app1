@@ -15,11 +15,13 @@ nav {
 nav ul {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
 }
 
 nav ul li {
-  display: inline;
-  margin: 0 1em;
+  margin: 0;
 }
 
 nav ul li a {
@@ -85,8 +87,13 @@ button:hover {
     padding: 1em;
   }
 
-  nav ul li {
-    display: block;
-    margin: 1em 0;
+  nav ul {
+    flex-direction: column;
+    gap: 0.5em;
   }
+}
+
+.logo {
+  height: 40px;
+  margin-right: 1em;
 }

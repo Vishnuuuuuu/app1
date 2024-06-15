@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
+
 const CapitalInterestPage = () => {
   const [capital, setCapital] = useState('');
   const [interest, setInterest] = useState('');
   const [amount, setAmount] = useState('');
+  const [finalAmount, setFinalAmount] = useState('');
+
+  useEffect(() => {
+    const calculateFinalAmount = () => {
+      if (capital && amount) {
+        setFinalAmount((parseFloat(capital) + parseFloat(amount)).toFixed(2));
+      } else {
+        setFinalAmount('');
+      }
+    };
+
+    calculateFinalAmount();
+  }, [capital, amount]);
 
   const handleCapitalChange = (e) => {
     const value = e.target.value;
     setCapital(value);
     if (interest) {
-      setAmount((value * (interest / 100)).toFixed(2));
+      const calculatedAmount = (value * (interest / 100)).toFixed(2);
+      setAmount(calculatedAmount);
     }
   };
 
@@ -17,7 +32,8 @@ const CapitalInterestPage = () => {
     const value = e.target.value;
     setInterest(value);
     if (capital) {
-      setAmount((capital * (value / 100)).toFixed(2));
+      const calculatedAmount = (capital * (value / 100)).toFixed(2);
+      setAmount(calculatedAmount);
     }
   };
 
@@ -25,12 +41,13 @@ const CapitalInterestPage = () => {
     const value = e.target.value;
     setAmount(value);
     if (capital) {
-      setInterest(((value / capital) * 100).toFixed(2));
+      const calculatedInterest = ((value / capital) * 100).toFixed(2);
+      setInterest(calculatedInterest);
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Capital and Interest Calculator</h2>
       <form>
         <div>
@@ -49,6 +66,12 @@ const CapitalInterestPage = () => {
           <label>
             Amount:
             <input type="number" value={amount} onChange={handleAmountChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Final Amount:
+            <input type="number" value={finalAmount} readOnly />
           </label>
         </div>
       </form>
