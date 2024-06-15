@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import CapitalInterestPage from './components/CapitalInterestPage';
+import LandPricePage from './components/LandPricePage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Capital Interest Calculator</Link>
+            </li>
+            <li>
+              <Link to="/land-price">Land Price Calculator</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route exact path="/" element={<CapitalInterestPage />} />
+          <Route path="/land-price" element={<LandPricePage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
