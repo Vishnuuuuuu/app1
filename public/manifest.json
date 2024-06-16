@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Intrest Calci",
+  "name": "A simple react app craeted by Vishnu",
   "icons": [
     {
       "src": "favicon.ico",
