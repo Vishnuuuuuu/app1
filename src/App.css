@@ -1,99 +1,266 @@
+/* App.css */
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #121212;
+  color: #f0f0f0;
+  line-height: 1.6;
 }
 
 nav {
-  background-color: #333;
-  color: white;
-  padding: 1em;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  padding: 1em 0;
   text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
   display: flex;
   justify-content: center;
-  gap: 1em;
+  gap: 2em;
 }
 
 nav ul li {
-  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+nav ul li:hover {
+  transform: scale(1.1);
 }
 
 nav ul li a {
-  color: white;
+  color: #ffea00; /* Neon yellow */
   text-decoration: none;
   font-weight: bold;
+  position: relative;
+  font-size: 1.2em;
 }
 
-.container {
-  max-width: 600px;
-  margin: 2em auto;
-  padding: 2em;
-  background: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  display: block;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  background: transparent;
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+  background: #ffea00;
+}
+
+.container, .income-container, .tx-container {
+  max-width: 900px;
+  margin: 3em auto;
+  padding: 2.5em;
+  background: #1e1e1e;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover, .income-container:hover, .tx-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
 }
 
 h2 {
   text-align: center;
-  color: #333;
+  color: #ffea00;
+  font-size: 2.5em;
+  margin-bottom: 1em;
+  animation: fadeInDown 1s ease;
 }
 
-form {
+form, .inputs-container {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
 }
 
-form div {
+form div, .input-group {
   display: flex;
   flex-direction: column;
+  animation: fadeInUp 1s ease;
 }
 
 label {
   font-weight: bold;
   margin-bottom: 0.5em;
+  color: #ffea00;
 }
 
 input[type="number"] {
-  padding: 0.5em;
+  padding: 0.8em;
   font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid #333;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  color: #f0f0f0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus {
+  border-color: #ffea00;
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 234, 0, 0.5);
 }
 
 button {
   padding: 1em;
-  font-size: 1em;
-  color: white;
-  background-color: #007bff;
+  font-size: 1.2em;
+  color: #121212;
+  background-color: #ffea00;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 234, 0, 0.3);
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #ffd500;
+  transform: translateY(-3px);
+}
+
+button:active {
+  background-color: #e6c200;
+  transform: translateY(0);
+}
+
+footer {
+  text-align: center;
+  padding: 1.5em;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  font-size: 0.9em;
+  margin-top: 2em;
+}
+
+footer a {
+  color: #ffea00;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-  .container {
+  .container, .income-container, .tx-container {
     margin: 1em;
-    padding: 1em;
+    padding: 1.5em;
   }
 
   nav ul {
     flex-direction: column;
     gap: 0.5em;
   }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  button {
+    padding: 0.8em;
+    font-size: 1em;
+  }
 }
 
-.logo {
-  height: 40px;
-  margin-right: 1em;
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.income-page {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+.inputs-section {
+  flex: 30%;
+  padding: 10px;
+  overflow-y: auto; /* Scrollable if content overflows */
+  background-color: #1e1e1e; /* Dark background for the sidebar */
+  color: #fff; /* Light color text for readability */
+  box-shadow: 2px 0 8px rgba(0,0,0,0.3); /* Subtle shadow for depth */
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.charts-section {
+  flex: 70%;
+  display: flex;
+  flex-direction: column; /* Vertical stacking of charts */
+  padding: 10px;
+}
+
+.chart-container {
+  flex: 1; /* Each chart expands to fill the space available */
+  margin-bottom: 20px; /* Space between charts */
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc; /* Visible borders for inputs */
+  border-radius: 4px;
+  background-color: #333; /* Darker shade for inputs */
+  color: #FFDD00; /* Neon yellow text for inputs */
+}
+
+@media (max-width: 768px) {
+  .income-page {
+    flex-direction: column; /* Stack vertically on smaller screens */
+  }
+
+  .inputs-section, .charts-section {
+    flex: 100%; /* Each section takes full width on smaller screens */
+  }
+
+  .charts-section {
+    order: 1; /* Charts come first on mobile */
+    padding: 20px 0;
+  }
+
+  .inputs-section {
+    order: 2; /* Inputs follow charts on mobile */
+  }
+}
+
